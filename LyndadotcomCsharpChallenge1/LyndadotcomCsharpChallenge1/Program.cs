@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-// Testing123 Git.
 namespace LyndadotcomCsharpChallenge1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            double num1;
-            double num2;
             Console.WriteLine("*** Welcome to the Simple Calculator! ***");
 
-            // Ask and validate the first number.
+            // Initialize and validate the first number.
+            double inputNum1;
             Console.Write("Please enter the first number: ");
-            num1 = GetNum();
+            inputNum1 = GetNumber();
 
-            // Ask and validate the second number.
+            // Initialize and validate the second number.
+            double inputNum2;
             Console.Write("Please enter the second number: ");
-            num2 = GetNum();
+            inputNum2 = GetNumber();
 
             // Ask for, validate, and perform the requested Math Operator.
             while (true)
@@ -34,51 +29,53 @@ namespace LyndadotcomCsharpChallenge1
                               "\n (R)e-enter Numbers " +
                               "\n (Q)uit " +
                               "\nPlease enter the desired math operator: ");
-                string input = Console.ReadLine();
+                string decision= Console.ReadLine();
 
                 // Switch, for user input.
-                switch (input.ToLower())
+                switch (decision.ToLower())
                 {
                     case "a":
                         Console.WriteLine(" The sum of " +
-                                          num1 +
+                                          inputNum1 +
                                           " and " +
-                                          num2 +
+                                          inputNum2 +
                                           " is: " +
-                                          Addition(num1, num2));
+                                          Addition(inputNum1, inputNum2));
                         continue;
                     case "s":
                         Console.WriteLine(" The difference of " +
-                                          num1 +
+                                          inputNum1 +
                                           " and " +
-                                          num2 +
+                                          inputNum2 +
                                           " is: " +
-                                          Subtraction(num1, num2));
+                                          Subtraction(inputNum1, inputNum2));
                         continue;
                     case "m":
                         Console.WriteLine(" The product of " +
-                                          num1 +
+                                          inputNum1 +
                                           " and " +
-                                          num2 +
+                                          inputNum2 +
                                           " is: " +
-                                          Multiplication(num1, num2));
+                                          Multiplication(inputNum1, inputNum2));
                         continue;
                     case "d":
                         Console.WriteLine(" The quotient of " +
-                                          num1 +
+                                          inputNum1 +
                                           " and " +
-                                          num2 +
+                                          inputNum2 +
                                           " is: " +
-                                          Division(num1, num2));
+                                          Division(inputNum1, inputNum2));
                         continue;
+                    // Re-initialize the numbers.
                     case "r":
                         Console.Write("Please enter the first number: ");
-                        num1 = GetNum();
+                        inputNum1 = GetNumber();
                         Console.Write("Please enter the second number: ");
-                        num2 = GetNum();
+                        inputNum2 = GetNumber();
                         continue;
                     case "q":
                         Console.WriteLine("Thank You for using the Simple Calculator! Press any key to continue!");
+                        // Exit app.
                         break;
                     default:
                         Console.WriteLine(" An invalid value was entered.");
@@ -91,14 +88,14 @@ namespace LyndadotcomCsharpChallenge1
             Console.ReadKey();
         }
 
-        static double GetNum()
+        private static double GetNumber()
         {
             double num;
 
-            // While loop, to receive and validate User input.
             while (true)
             {
                 string input = Console.ReadLine();
+                // Validate and convert User input.
                 if (double.TryParse(input, out num))
                 {
                     return num;
@@ -110,22 +107,22 @@ namespace LyndadotcomCsharpChallenge1
             }
         }
 
-        static double Addition(double value1, double value2)
+        private static double Addition(double value1, double value2)
         {
             return (value1 + value2);
         }
 
-        static double Subtraction(double value1, double value2)
+        private static double Subtraction(double value1, double value2)
         {
             return (value1 - value2);
         }
 
-        static double Multiplication(double value1, double value2)
+        private static double Multiplication(double value1, double value2)
         {
             return (value1 * value2);
         }
 
-        static double Division(double value1, double value2)
+        private static double Division(double value1, double value2)
         {
             // Validate Divide by Zero.
             if (value2 == 0)
